@@ -56,10 +56,7 @@ export default function GenerateMinesweeper(
 export function formatBoard(board: string[][]) {
   let output = "";
 
-  console.log("width",board.length)
-
   for (let x = 0; x < board.length; x++) {
-    console.log("height",board[x].length)
     for (let y = 0; y < board[x].length; y++) {
       output += board[x][y];
     }
