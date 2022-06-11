@@ -69,4 +69,11 @@ export function formatBoard(board: string[][]) {
   return output;
 }
 
-console.log(formatBoard(GenerateMinesweeper(9, 10, 8)));
+const askedWidth = 9
+const askedHeight = 10
+const askedMines = 10
+
+
+console.log(`Minesweeper, ${askedWidth}x${askedHeight} with ${askedMines} mines`)
+console.log(formatBoard(GenerateMinesweeper(askedWidth, askedHeight, askedMines)));
+
