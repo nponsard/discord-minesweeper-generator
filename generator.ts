@@ -1,4 +1,5 @@
 const boxTypes = ["🟦", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"];
+const redBox = "🟥";
 
 export default function GenerateMinesweeper(
   width: number,
@@ -17,7 +18,7 @@ export default function GenerateMinesweeper(
     const y = Math.floor(Math.random() * height);
 
     if (board[x][y] === undefined) {
-      board[x][y] = "||🟥||";
+      board[x][y] = `||${redBox}||`;
       minesPlaced++;
     }
   }
@@ -39,7 +40,7 @@ export default function GenerateMinesweeper(
               neighborY < height
             ) {
             
-              if (board[neighborX][neighborY] === "||🟥||") {
+              if (board[neighborX][neighborY] === `||${redBox}||`) {
                 neighbors++;
               }
             }
@@ -66,9 +67,15 @@ export function formatBoard(board: string[][]) {
   return output;
 }
 
-const askedWidth = 9
-const askedHeight = 10
-const askedMines = 10
+const askedWidth = parseInt(Deno.args[0])
+const askedHeight = parseInt(Deno.args[1])
+const askedMines = parseInt(Deno.args[2])
+
+if (isNaN(askedWidth) || isNaN(askedHeight) || isNaN(askedMines)) {
+  console.log("Invalid arguments")
+  console.log("Usage: deno run generator.ts <width> <height> <mines>")
+  Deno.exit(1)
+}
 
 
 console.log(`Minesweeper, ${askedWidth}x${askedHeight} with ${askedMines} mines`)
